@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html data-theme="light" class="">
+
+<head>
+  <meta content="always" name="referrer">
+  <link rel="icon" type="image/png" href="https://via.placeholder.com/50"> <!-- 添加一个占位图标 -->
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#eee">
+  <title>辞之次元空间</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #FFD9E6;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .content {
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 600px;
+    }
+
+    p.text {
+      color: #333;
+      font-size: 20px;
+      margin: 0;
+    }
+
+    .subtitle {
+      color: #888;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .ghost {
+      font-size: 24px;
+      color: #666;
+      margin-top: 20px;
+    }
+
+    .footer {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #555;
+    }
+    .sakura {
+      position: fixed;
+      top: -10px;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="content">
+    <p class="text">欢迎来到辞之次元空间</p>
+    <p class="subtitle">一个充满想象世界</p>
+    <p class="ghost">👻 页面还在建设中...</p>
+  </div>
+  <div class="footer">
+    <p>版权所有 © 2025 辞晨</p>
+  </div>
+  <script>
+  function createSakura() {
+      const sakura = document.createElement('div');
+      sakura.className = 'sakura';
+      sakura.innerHTML = '🌸';
+      sakura.style.left = Math.random() * 100 + 'vw';
+      sakura.style.animationDuration = Math.random() * 3 + 2 + 's';
+      sakura.style.fontSize = Math.random() * 10 + 10 + 'px';
+      document.body.appendChild(sakura);
+      setTimeout(() => sakura.remove(), 5000);
+    }
+    setInterval(createSakura, 300);
+  </script>
+</body>
+
+</html>

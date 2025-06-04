@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html data-theme="light" class="">
+
+<head>
+  <meta content="always" name="referrer">
+  <link rel="icon" type="image/png" href="https://via.placeholder.com/50">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="renderer" content="webkit">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="theme-color" content="#eee">
+  <title>辞之次元</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: url("http://srcbs.cn/cyapi.php") no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      margin: 0;
+      height: 100%;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative; /* 确保背景遮罩的定位 */
+    }
+
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.28);
+      z-index: -1;
+    }
+
+    header {
+      background-color: #ff69b4;
+      color: #ffffff;
+      padding: 1em 0;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-family: "Courier New", monospace;
+    }
+
+    main {
+      padding: 2em;
+      flex: 1; /* 让main占据剩余空间 */
+    }
+
+    .intro {
+      text-align: center;
+      font-size: 2em;
+      font-weight: bold;
+      color: white;
+    }
+
+    .dynamic-text {
+      text-align: center;
+      margin-top: 5px;
+      font-size: 17px;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+      width: 0;
+      left: 50%;
+      animation: typing 5s steps(20, end) infinite, blink 0.75s step-end infinite;
+      font-weight: bold;
+    }
+
+    @keyframes typing {
+      0%, 100% {
+        width: 0;
+        left: 50%;
+      }
+      50% {
+        width: 100%;
+        left: 0;
+      }
+    }
+
+    body {
+      animation: loading 3.2s ease-in-out forwards;
+    }
+
+    @keyframes blink {
+      from, to {
+        border-color: transparent;
+      }
+      50% {
+        border-color: black;
+      }
+    }
+
+    .content {
+      margin-top: 2em;
+      background-color: #ffe4e1;
+      padding: 1em;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+    }
+
+    footer {
+      background-color: transparent;
+      color: #333;
+      text-align: center;
+      padding: 0.7em 0;
+      position: relative; /* 修改为相对定位 */
+      width: 100%;
+      bottom: auto; /* 移除底部固定 */
+      font-weight: bold;
+    }
+
+    .rotating-image {
+      width: 120px;
+      height: 120px;
+      display: block;
+      margin: 0 auto;
+      border-radius: 50%;
+    }
+
+    .text {
+      text-align: center;
+      color: #ffffff;
+      font-size: 17px;
+      font-weight: bold;
+    }
+
+    .image-name {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    a {
+      display: block;
+      width: 200px;
+      height: 10px;
+      background-color: rgba(240, 248, 255, 0.5);
+      text-align: center;
+      padding: 10px;
+      margin: 0 auto;
+      line-height: 5px;
+      text-decoration: none;
+      color: #333333;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      font-weight: bold;
+    }
+
+    a:hover {
+      background-color: rgba(240, 248, 255, 0.5);
+    }
+
+    .icon-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      width: 100%;
+      padding: 0;
+      position: relative; /* 确保子元素的绝对定位基于这个容器 */
+    }
+
+    .icon-button {
+      background-color: white;
+      color: #666666;
+      padding: 5px;
+      border-radius: 50%;
+      width: 25px;
+      height: 25px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      text-decoration: none;
+      margin: 0;
+      position: relative;
+    }
+
+    .icon-button:hover {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* 图标添加阴影效果 */
+    }
+
+    footer p {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: transparent;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow: hidden;
+      padding: 0;
+    }
+
+    .popup img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+    }
+
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 500;
+    }
+
+    .sakura {
+      position: fixed;
+      top: -10px;
+      pointer-events: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+
+    .app-intro {
+      background-color: rgba(240, 248, 255, 0.5);
+      padding: 0.6em;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      margin-top: 0.8em;
+      text-align: justify;
+      line-height: 1.3;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .app-intro p {
+      margin-bottom: 0.4em;
+    }
+
+    @keyframes loading {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+  <main>
+    <section class="intro">
+      <p>辞之次元</p>
+    </section>
+    <p class="dynamic-text">零碎的岛屿终会找到海，慢慢亦漫漫。</p>
+    <img src="touxiang.jpg" alt="头像" class="rotating-image">
+    <p class="image-name">
+      <span class="clickable-name" onclick="showNamePopup()">辞晨</span>
+    </p>
+    <p class="text">你好，世界！</p>
+    <a href="./index1.html">辞之次元</a>
+    <div class="app-intro">
+      <p>「阅读」APP是一款高度自由化的开源阅读工具，其核心设计理念是赋予用户完全自主的内容控制权。</p>
+      <p>与传统阅读软件不同，该应用本身不提供      任何预设内容，而是作为一个强大的内容聚合容器，用户需要自行配置或导入书源来实现阅读功能。</p>
+      <p>软件本身完全无广，免费。请前往GitHub官网进行下载正版。</p>
+    </div>
+  </main>
+  <footer>
+    <div class="icon-container">
+      <a href="https://qm.qq.com/q/ziv6oW5h9m" class="icon-button" target="_blank">
+        <i class="fab fa-qq" style="font-size: 20px;"></i>
+      </a>
+      <a href="https://m.bilibili.com/" class="icon-button" target="_blank">
+        <i class="fa-brands fa-bilibili"></i>
+      </a>
+      <a href="https://github.com" class="icon-button" target="_blank">
+        <i class="fab fa-github" style="font-size: 20px;"></i>
+      </a>
+      <a href="mailto:3330253407@qq.com" class="icon-button">
+        <i class="fas fa-envelope" style="font-size: 20px;"></i>
+      </a>
+    </div>
+    <p>️🧾⚙版权所有(侵权删) © 2025 辞晨.⁧~辞⁧‭✨</p>
+  </footer>
+
+  <div class="popup" id="name-popup">
+    <img src="IMG_20250217_011445.png" alt="辞晨的弹窗图片">
+  </div>
+  <div class="popup-overlay" id="popup-overlay"></div>
+  <div class="background-overlay"></div>
+  <script>
+    
+    function closePopup() {
+      document.getElementById('name-popup').style.display = 'none';
+      document.getElementById('popup-overlay').style.display = 'none';
+    }
+    document.getElementById('popup-overlay').addEventListener('click', closePopup);
+    function createSakura() {
+      const sakura = document.createElement('div');
+      sakura.className = 'sakura';
+      sakura.innerHTML = '🌸';
+      sakura.style.left = Math.random() * 100 + 'vw';
+      sakura.style.animationDuration = Math.random() * 3 + 2 + 's';
+      sakura.style.fontSize = Math.random() * 10 + 10 + 'px';
+      document.body.appendChild(sakura);
+      setTimeout(() => sakura.remove(), 5000);
+    }
+    setInterval(createSakura, 300);
+  </script>
+</body>
+</html>
